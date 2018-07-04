@@ -7,8 +7,75 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <ControlTemplate x:Key="MyEnemySzablon1" TargetType="ContentControl">
+            <Grid>
+                <Ellipse x:Name="WygladPrzeciwnika" HorizontalAlignment="Center" Height="100" VerticalAlignment="Center" Width="106">
+                    <Ellipse.Fill>
+                        <ImageBrush ImageSource="Assets/Flying_Spaghetti_Monster.jpg"/>
+                    </Ellipse.Fill>
+                </Ellipse>
+            </Grid>
+        </ControlTemplate>
+    </Page.Resources>
 
-    <Grid>
+    <Grid x:Name="grid">
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="160"/>
+            <RowDefinition/>
+            <RowDefinition Height="160"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="160"/>
+            <ColumnDefinition/>
+            <ColumnDefinition Width="160"/>
+        </Grid.ColumnDefinitions>
+
+        <Button x:Name="StartButton" Content="Start!" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Click="StartButton_Click" FontFamily="Book Antiqua"/>
+
+        <Canvas x:Name="myPlayArea" Grid.Row="1" Grid.ColumnSpan="3" PointerMoved="myPlayArea_PointerMoved" PointerExited="myPlayArea_PointerExited" >
+
+            <Canvas.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FFBEF1F1"/>
+                    <GradientStop Color="#FF192719" Offset="1"/>
+
+                </LinearGradientBrush>
+            </Canvas.Background>
+
+            <StackPanel x:Name="MyCzlowiek" HorizontalAlignment="Stretch" Canvas.Left="-1" Orientation="Vertical" VerticalAlignment="Stretch" PointerPressed="MyCzlowiek_PointerPressed">
+
+                <Ellipse HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White" Width="20" Height="20"/>
+                <Rectangle Height="25" HorizontalAlignment="Center" VerticalAlignment="Top" Fill="White" Width="10"/>
+
+            </StackPanel>
+
+            <TextBlock x:Name="MyKoniecGryText" HorizontalAlignment="Center" Text="Koniec Gry!" TextWrapping="Wrap" VerticalAlignment="Center" FontFamily="Arial" FontSize="72" FontWeight="Bold" FontStyle="Italic" Canvas.Left="493" Canvas.Top="311"/>
+
+            <Rectangle x:Name="Portal" Height="50" Width="50" Canvas.Left="896" Canvas.Top="278" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" PointerEntered="Portal_PointerEntered">
+
+                <Rectangle.RenderTransform>
+                    <CompositeTransform Rotation="45"/>
+                </Rectangle.RenderTransform>
+
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="Assets/Portal.png"/>
+                </Rectangle.Fill>
+
+            </Rectangle>
+
+        </Canvas>
+        <StackPanel x:Name="StackPanelManual" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="3" Grid.Column="3">
+            <TextBlock Text="Unikaj ich!!" TextWrapping="Wrap" Style="{StaticResource SubheaderTextBlockStyle}" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="Book Antiqua" FontSize="24"/>
+            <ContentControl Template="{StaticResource MyEnemySzablon1}" Content="ContentControl"/>
+        </StackPanel>
+        <TextBlock x:Name="pageTitle" Style="{StaticResource HeaderTextBlockStyle}" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Center" Margin="2,0,-24,67" Height="62" Grid.ColumnSpan="3" HorizontalAlignment="Center" FontFamily="Book Antiqua" FontWeight="Bold"><Run Text="U"/><Run Text="r"/><Run Text="atuj Nieszczęśnikó"/><Run Text="w!"/></TextBlock>
+
+        <ProgressBar x:Name="pasekStanu" Grid.Column="1" Grid.Row="2" Height="20"/>
+        <TextBlock x:Name="TekstNadPaskiemStanu" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Book Antiqua" FontSize="24"><Run Text="Pozostały Czas na Ucieczk"/><Run Text="ę:"/><LineBreak/><Run/></TextBlock>
+        <TextBlock x:Name="Historia" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Book Antiqua"><Run Text="Ziemia została zaatakowana przez obcą cywilizację z planety Pasta. "/><LineBreak/><Run Text="Uratuj jak najwięcej ludzi prowadząc ich do teleportu!"/></TextBlock>
     </Grid>
 </Page>
