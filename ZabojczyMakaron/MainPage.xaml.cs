@@ -32,14 +32,10 @@ namespace ZabojczyMakaron
         public MainPage()
         {
             this.InitializeComponent();
-            
-
             enemyTimer.Tick += EnemyTimer_Tick;
             enemyTimer.Interval = TimeSpan.FromSeconds(2);
-            
             targetTimer.Tick += TargetTimer_Tick;
             targetTimer.Interval = TimeSpan.FromSeconds(.1);
-
         }
 
         private void TargetTimer_Tick(object sender, object e)
@@ -84,7 +80,6 @@ namespace ZabojczyMakaron
             myPlayArea.Children.Add(MyCzlowiek);
             enemyTimer.Start();
             targetTimer.Start();
-
         }
 
         private void AddEnemy()
@@ -95,9 +90,7 @@ namespace ZabojczyMakaron
             AnimateEnemy(enemy, random.Next((int)myPlayArea.ActualHeight - 100), 
                 random.Next((int)myPlayArea.ActualHeight - 100), "(Canvas.Top)");
             myPlayArea.Children.Add(enemy);
-
             enemy.PointerEntered += Enemy_PointerEntered;
-            
         }
 
         private void Enemy_PointerEntered(object sender, PointerRoutedEventArgs e)
