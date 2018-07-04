@@ -36,7 +36,7 @@ namespace ZabojczyMakaron
 
             enemyTimer.Tick += EnemyTimer_Tick;
             enemyTimer.Interval = TimeSpan.FromSeconds(2);
-
+            
             targetTimer.Tick += TargetTimer_Tick;
             targetTimer.Interval = TimeSpan.FromSeconds(.1);
 
